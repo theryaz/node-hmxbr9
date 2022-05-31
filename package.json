@@ -1,0 +1,10 @@
+{
+  "name": "10kc-backend-coding-challenge",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
