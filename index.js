@@ -2,7 +2,7 @@
  * Read the README.md first
  * Run node index.js to start server
  */
-import express from 'express';
+const express = require('express');
 const app = express();
 const port = 3000;
 const { connect } = require('./common/mongodb/connect.js');
