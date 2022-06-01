@@ -11,6 +11,7 @@ class UserController {
 		router.post('/', this.createUser.bind(this));
 		router.post('/notification', this.createNotification.bind(this));
 		router.get('/notification/unread', this.getUnreadNotifications.bind(this));
+		router.put('/notification/mark-read', this.markAllNotificationsRead.bind(this));
 		return router;
 	}
 
@@ -65,6 +66,22 @@ class UserController {
 			}
 			const { unreadCount } = await unreadPromise;
 			res.json({ unreadCount });
+		}catch(e){
+			return next(e);
+		}
+  }
+
+	/**
+	 * Marks all notifications as read for the given user by email address. Returns number of notifications modified.
+	 */
+  async markAllNotificationsRead(req, res, next) {
+		try{
+			const { email } = req.body;
+			if(!email){
+				throw new BadRequestError("Must provide email for user");
+			}
+			const result = await this.userService.markNotificationsReadByEmail({ email });
+			res.json(result);
 		}catch(e){
 			return next(e);
 		}

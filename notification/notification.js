@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const NotificationSchema = new Schema({
   userId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     default: null,
     index: true,
   },
